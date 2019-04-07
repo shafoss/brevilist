@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block head_title %} Brevilist Project {% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Brevilist</h1>
+            <p>This app lets you enter some letters and get a list of all words that contain those letters and their
+                definitions. <br>
+                The letters can appear anywhere in the word, or you can choose that they must appear in the order
+                provided.</p>
+            <div class="search">
+                <form class="search" action="{{ url_for('results') }}" method="post">
+                    <div class="form-group row">
+                        <div class="input-group col-lg-8 mb-3">
+                            <input type="text" class="form-control form-control-lg" placeholder="Letter to search"
+                                   aria-label="Letters to search" aria-describedby="button" name="search-text" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit" id="button">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% include results ignore missing %}
+
+
+    </div>
+{% endblock %}

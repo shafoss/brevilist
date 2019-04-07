@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-4">
+        <h2>Matches</h2>
+        {% block matches %}
+            {% if matches %}
+                {% for match in matches %}
+                    <div class="row">{{ match }}</div>
+                {% endfor %}
+            {% else %}
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+            {% endif %}
+        {% endblock %}
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-8">
+        <h2>Definitions</h2>
+        {% block definitions %}
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>{% endblock %}
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+</div>
