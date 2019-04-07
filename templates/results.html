@@ -1,25 +1,26 @@
-<div class="row">
-    <div class="col-md-4">
-        <h2>Matches</h2>
-        {% block matches %}
-            {% if matches %}
-                {% for match in matches %}
-                    <div class="row">{{ match }}</div>
-                {% endfor %}
-            {% else %}
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                    mollis euismod. Donec sed odio dui. </p>
-            {% endif %}
-        {% endblock %}
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+<div class="container">
+    <div class="row mb-3">
+        <h2><span class="text-muted">Results for </span>'{{ search_text }}'</h2>
     </div>
-    <div class="col-md-8">
-        <h2>Definitions</h2>
-        {% block definitions %}
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-                euismod. Donec sed odio dui. </p>{% endblock %}
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Matches</h3>
+            {% block matches %}
+                {% if matches %}
+                    {% for match in matches %}
+                        <div class="row">
+                            <div class="col-md-4">{{ match }}</div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No matches were found.</p>
+                {% endif %}
+            {% endblock %}
+        </div>
+        <div class="col-md-8">
+            <h3>Definitions</h3>
+            {% block definitions %}
+                <p>---</p>{% endblock %}
+        </div>
     </div>
 </div>

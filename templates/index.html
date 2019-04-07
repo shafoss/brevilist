@@ -3,13 +3,12 @@
 {% block head_title %} Brevilist Project {% endblock %}
 
 {% block content %}
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1>Brevilist</h1>
-            <p>This app lets you enter some letters and get a list of all words that contain those letters and their
-                definitions. <br>
-                The letters can appear anywhere in the word, or you can choose that they must appear in the order
-                provided.</p>
+            <p class="lead">This app lets you enter some letters and get a list of all words that contain those letters
+                and their
+                definitions. </p>
             <div class="search">
                 <form class="search" action="{{ url_for('results') }}" method="post">
                     <div class="form-group row">
@@ -28,7 +27,5 @@
 
     <div class="container">
         {% include results ignore missing %}
-
-
     </div>
 {% endblock %}
