@@ -1,26 +1,26 @@
 <div class="container">
     <div class="row mb-3">
-        <h2><span class="text-muted">Results for </span>'{{ search_text }}'</h2>
+        <h2><span class="text-muted">{{ matches | count }} results for </span>'{{ search_text }}'</h2>
     </div>
     <div class="row">
         <div class="col-md-4">
             <h3>Matches</h3>
-            {% block matches %}
-                {% if matches %}
-                    {% for match in matches %}
-                        <div class="row">
-                            <div class="col-md-4">{{ match }}</div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>No matches were found.</p>
-                {% endif %}
-            {% endblock %}
         </div>
         <div class="col-md-8">
             <h3>Definitions</h3>
-            {% block definitions %}
-                <p>---</p>{% endblock %}
         </div>
     </div>
+    {% if matches %}
+        {% for match, definition in matches.items() %}
+            <div class="row">
+                <div class="col-md-4">{{ match }}</div>
+                <div class="col-md-8">{% if definition %}{{ definition }}{% else %}---{% endif %}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="row">
+            <p>No matches were found.</p>
+        </div>
+    {% endif %}
 </div>
+

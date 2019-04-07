@@ -39,7 +39,8 @@ def find_matches(search_text="", appear_in_order=True, single_word_matches=True)
                 matches.append(key)
 
     matches.sort()
-    return matches
+    results = {match.capitalize(): data[match] for match in matches}
+    return results
 
 
 # def results_to_csv(text, matches):
