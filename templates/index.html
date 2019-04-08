@@ -11,12 +11,28 @@
                 definitions. </p>
             <div class="search">
                 <form class="search" action="{{ url_for('results') }}" method="post">
-                    <div class="form-group row">
-                        <div class="input-group col-lg-8 mb-3">
-                            <input type="text" class="form-control form-control-lg" placeholder="Letter to search"
-                                   aria-label="Letters to search" aria-describedby="button" name="search-text" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit" id="button">Search</button>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" placeholder="Letter to search"
+                                       aria-label="Letters to search" aria-describedby="button" name="search-text"
+                                       required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit" id="button">Search</button>
+                                </div>
+                            </div>
+                            {% if help_text %}
+                                <small id="help-text" class="form-text px-3 text-info">
+                                    {{ help_text }}
+                                </small>
+                            {% endif %}
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="in-order-check" name="in-order" checked>
+                                <label class="custom-control-label" for="in-order-check">Match in order</label>
                             </div>
                         </div>
                     </div>
