@@ -1,5 +1,6 @@
 import json
 import re
+from collections import Counter
 
 data = json.load(open("websters_dictionary.json"))
 
@@ -19,7 +20,14 @@ def do_search(search_text, appear_in_order=True):
     if appear_in_order:
         search_pattern = '.*'.join(map(str, letter_list))
     else:
-        search_pattern = '(?=.*' + ')(?=.*'.join(map(str, letter_list)) + ')'
+        letter_set = set(letter_list)
+        counter = Counter(letter_list)
+        for letter in counter:
+            if counter[letter] > 1:
+                repeated_letter = '.*'.join(letter * counter[letter])
+                letter_set.remove(letter)
+                letter_set.add(repeated_letter)
+        search_pattern = '(?=.*' + ')(?=.*'.join(map(str, letter_set)) + ')'
     matches = get_matches(search_pattern)
 
     matches.sort()
