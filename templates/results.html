@@ -1,16 +1,26 @@
 <div class="container">
-    <div class="row mb-3">
-        <h2><span class="text-muted">{{ matches | count }} results for </span>'{{ search_text }}'</h2>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3>Matches</h3>
-        </div>
-        <div class="col-md-8">
-            <h3>Definitions</h3>
-        </div>
-    </div>
     {% if matches %}
+        <div class="d-flex justify-content-between">
+            <h2><span class="text-muted">{{ matches | count }} results for </span>'{{ search_text }}'</h2>
+            <div>
+                <form class="download" action="{{ url_for('download') }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="matches" value="{{ matches }}"/>
+                    <input type="hidden" name="search-text" value="{{ search_text }}"/>
+                    <button type="submit" class="btn btn-primary">Download CSV</button>
+
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Matches</h3>
+            </div>
+            <div class="col-md-8">
+                <h3>Definitions</h3>
+            </div>
+        </div>
+
         {% for match, definition in matches.items() %}
             <div class="row">
                 <div class="col-md-4">{{ match }}</div>
@@ -19,7 +29,7 @@
         {% endfor %}
     {% else %}
         <div class="row">
-            <p>No matches were found.</p>
+            <h2>No matches were found.</h2>
         </div>
     {% endif %}
 </div>
